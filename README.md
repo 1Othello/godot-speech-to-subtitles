@@ -19,7 +19,7 @@ Create a Singleton for this script.
 (This allows you to use it inside of any script.)
 
 
-> Simple Usage
+### Simple Usage
 
 ```
 var data = {"TextPath": "res://path_to_text_file.txt", "Label": label_or_richtextlabel_node} # Settings which will be passed as an argument.
@@ -28,7 +28,37 @@ var animation = Captions.create(data) # Returns an Animation which can be used b
 See example below.
 ![Screenshot_89](https://github.com/1Othello/godot-speech-to-subtitles/assets/132980114/ef7b88f5-6220-4425-b976-7c8e03c963ba)
 
+### Data Dictionary
 
+In order to create your subtitle animation you need to pass over a dictionary for the Captions.create() function to use.
+
+Here are all the keys which the singleton will accept:
+
+1. TextPath (String) (REQUIRED)
+   - The path to the text file which is in subrip format. (Example: "res://my_long_speech.txt")
+
+You can retrieve a template of the dictionary data needed directly from the singleton itself.
+
+```
+var template = Captions.get_required_template() # Returns a dictionary with only the required keys.
+print(template)
+# Output {"TextPath": "PATH TO .TXT FILE (REQUIRED)", "LABEL": "LABEL OR RICHTEXTLABEL NODE (REQUIRED)"}
+```
+
+Or
+
+```
+var template = Captions.get_complete_template() # Returns a dictionary with every key.
+print(template)
+# Output {"TextPath": "PATH TO .TXT FILE (REQUIRED)", # Required
+#	"Label": "LABEL OR RICHTEXTLABEL NODE (REQUIRED)", # Required
+#	"Name": "NEW ANIMATION NAME (OPTIONAL)", # Optional
+#	"AnimationPlayer": "ANIMATIONPLAYER NODE (OPTIONAL)", # Optional
+#	"Duration": "AUDIO LENGTH (OPTIONAL)", # Optional
+#	"Style": "WORD OR LETTER (OPTIONAL)", # Optional
+#	"TimeOnly": "TRUE OR FALSE (OPTIONAL)" # Optional
+#	}
+```
 
 ## Creating an SRT file (Tutorial)
 
