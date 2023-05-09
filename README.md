@@ -20,7 +20,7 @@ Create a Singleton for this script.
 
 Create a seperate script inside a scene with a Label or RichTextLabel.
 
-Simple usage:
+# Simple Usage
 
 ```python
 var data = {"TextPath": "res://path_to_text_file.txt", "Label": label_or_richtextlabel_node} # Settings which will be passed as an argument.
