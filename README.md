@@ -7,7 +7,7 @@ GSS creates an [Animation](https://docs.godotengine.org/en/stable/classes/class_
 ## Things I Recommend
 
 - Godot Engine 4 (or above)
-- Python 3.7+ and OpenAI (Optional: not needed if you already have or will make an SRT file.)
+- Python 3.7+ and OpenAI (Optional for transcribing audio files)
 
 ## How To Use
 
