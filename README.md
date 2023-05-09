@@ -1,6 +1,6 @@
 # Godot Speech To Subtitles
 
-Godot Speech To Subtitles (GSS) works as a Godot Singleton and Transcription Guide that helps you generate and sync subtitles for when your in-game character speaks using an AnimationPlayer.
+Godot Speech To Subtitles (GSS) works as a Godot Singleton and Transcription Guide that helps you generate and sync subtitles for when your in-game character speaks.
 
 GSS creates an [Animation](https://docs.godotengine.org/en/stable/classes/class_animation.html) for the [Label](https://docs.godotengine.org/en/stable/classes/class_label.html) and [RichTextLabel](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html) nodes using a text files (.txt) which are formatted identically to a subrip files (.srt).
 
