@@ -1,6 +1,6 @@
 # Godot Speech To Subtitles
 
-Godot Speech To Subtitles (GSS) works as a Godot Singleton and Transcription Guide that helps you create readable subtitles for when your in-game character speaks.
+Godot Speech To Subtitles (GSS) works as a Godot Singleton and Transcription Guide that helps you generate and sync subtitles for when your in-game character speaks using an AnimationPlayer.
 
 GSS creates an [Animation](https://docs.godotengine.org/en/stable/classes/class_animation.html) for the [Label](https://docs.godotengine.org/en/stable/classes/class_label.html) and [RichTextLabel](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html) nodes using a text files (.txt) which are formatted identically to a subrip files (.srt).
 
@@ -28,14 +28,40 @@ var animation = Captions.create(data) # Returns an Animation which can be used b
 See example below.
 ![Screenshot_89](https://github.com/1Othello/godot-speech-to-subtitles/assets/132980114/ef7b88f5-6220-4425-b976-7c8e03c963ba)
 
-### Data Dictionary
+### Data Dictionary (Advanced Usage)
 
 In order to create your subtitle animation you need to pass over a dictionary for the Captions.create() function to use.
 
 Here are all the keys which the singleton will accept:
 
-1. **TextPath** (String) (REQUIRED)
+1. TextPath (String) (REQUIRED)
    - The path to the text file which is in subrip format. (Example: "res://my_long_speech.txt")
+ 
+2. Label (Label or RichTextLabel) (REQUIRED)
+   - A node representing a Label or RichTextLabel. (For displaying the subtitles.)
+
+The rest are completely optional.
+
+3. Name (String)
+   - The name you want to give your animation. (Combine this with the AnimationPlayer key to have the animation automatically added to your AnimationPlayer node.)
+
+4. AnimationPlayer (AnimationPlayer)
+   - The AnimationPlayer node you want to create an animation inside of. (You must include the Name key for this to work.)
+
+5. Duration (Float)
+   - The length of the animation. If this isn't provided it will automatically be set to the last timestamp on the .txt file.
+   - (I recommend having this setting be the length of your audio file.)
+
+6. Style (String)
+   - The style in which subtitles will appear on the screen. (This is set to "Letter" by default. Although can be changed to "Word")
+   - "Letter" makes it so that the all characters appear one by one to create a typewriter effect.
+   - "Word" makes it so that all words appears one by one instead of characters.
+
+7. TimeOnly (Bool)
+   - False by default.
+   - Making this True will allow you to instead get an array of all the formatted timestamps.
+   - Example output: [{"text": "The world is mine!", "start": 0.0, "end": 1.0}]
+
 
 You can retrieve a template of the dictionary data needed directly from the singleton itself.
 
@@ -99,8 +125,7 @@ get_captions()
 
 Run this simple script having made sure you replaced "OPENAI_API_KEY" and "PATH_TO_AUDIO_FILE" with the value that applies to you.
 
-You should find a .txt file called "raw_captions" in the folder you ran the script. This is what you will be using to create the subtitles for your characters.
-
+You should find a .txt file called "raw_captions" in the folder you ran the script. This is the file you will need to import into godot in order to generate subtitles.
 
 ## Contributing
 
