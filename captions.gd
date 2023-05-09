@@ -4,9 +4,9 @@ extends Node
 func generate_animation_WORDS(data, caption_fields):
 	var animation = Animation.new()
 	var track_index = animation.add_track(Animation.TYPE_VALUE)
-	
+	var nodePath = NodePath(data["Label"].owner.get_path_to(data["Label"]))
 	animation.value_track_set_update_mode(track_index, Animation.UPDATE_DISCRETE)
-	animation.track_set_path(track_index, get_path_to(data["Label"]).get_concatenated_names() + ":text")
+	animation.track_set_path(track_index, nodePath.get_concatenated_names() + ":text")
 	var last_field = caption_fields[caption_fields.size() - 1]
 	caption_fields.remove_at(caption_fields.size() - 1)
 	var written = ""
@@ -70,11 +70,11 @@ func generate_animation_WORDS(data, caption_fields):
 func generate_animation_LETTERS(data, caption_fields):
 	var animation = Animation.new()
 	var track_index = animation.add_track(Animation.TYPE_VALUE)
+	var nodePath = NodePath(data["Label"].owner.get_path_to(data["Label"]))
 	var chars = 0
 	var full_script = ""
-	
 	animation.value_track_set_update_mode(track_index, Animation.UPDATE_CONTINUOUS)
-	animation.track_set_path(track_index, get_path_to(data["Label"]).get_concatenated_names() + ":text")
+	animation.track_set_path(track_index, nodePath.get_concatenated_names() + ":text")
 	var last_field = caption_fields[caption_fields.size() - 1]
 	caption_fields.remove_at(caption_fields.size() - 1)
 	var written = ""
@@ -137,7 +137,7 @@ func create(data: Dictionary): # Creates and returns a label animation with the 
 		return caption_fields
 	
 	if "Style" in data: # The style of the animation.
-		if data["Style"].lower() == "word":
+		if data["Style"].to_lower() == "word":
 			var outcome = generate_animation_WORDS(data, caption_fields)
 			return outcome
 		else:
