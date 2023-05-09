@@ -2,7 +2,7 @@
 
 Godot Speech To Subtitles (GSS) works as a Godot Singleton and Transcription Guide that helps you create readable subtitles for when your in-game character speaks.
 
-GSS creates an Animation for the [Label](https://docs.godotengine.org/en/stable/classes/class_label.html) and RichTextLabel nodes object inside of Godot using a provided text file (.txt) which is formatted like a subrip file (.srt).
+GSS creates an [Animation](https://docs.godotengine.org/en/stable/classes/class_animation.html) for the [Label](https://docs.godotengine.org/en/stable/classes/class_label.html) and [RichTextLabel](https://docs.godotengine.org/en/stable/classes/class_richtextlabel.html) nodes using a text files (.txt) which are formatted identically to a subrip file (.srt).
 
 ## Things I Recommend
 
@@ -20,12 +20,15 @@ Create a Singleton for this script.
 
 Create a seperate script inside a scene with a Label or RichTextLabel.
 
-Simple use:
+Simple usage:
 
 ```python
-var data = {"Name": "my_subtitles", ""}
-
+var data = {"TextPath": "res://path_to_text_file.txt", "Label": label_or_richtextlabel_node} # Settings which will be passed as an argument.
+var animation = Captions.create(data) # Returns an Animation which can be used by AnimationPlayer to start showing the subtitles.
 ```
+![Screenshot_89](https://github.com/1Othello/godot-speech-to-subtitles/assets/132980114/ef7b88f5-6220-4425-b976-7c8e03c963ba)
+
+
 
 ## Creating an SRT file (Tutorial)
 
