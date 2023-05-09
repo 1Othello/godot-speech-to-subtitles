@@ -88,7 +88,7 @@ print(template)
 
 ## Creating an SRT file (Tutorial)
 
-(If you already have an SRT file then please convert it into a .txt file and scroll passed this section.)
+(If you already have an SRT file then please convert it into a .txt file and ignore this section.)
 
 An SRT file (also known as a SubRip Subtitle) is a type of file which is commonly used when creating captions for films and videos.
 
