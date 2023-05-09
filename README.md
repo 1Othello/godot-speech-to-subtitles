@@ -19,7 +19,7 @@ Create a Singleton for this script.
 (This allows you to use it inside of any script.)
 
 
-### Simple Usage
+### Easy Usage
 
 ```
 var data = {"TextPath": "res://path_to_text_file.txt", "Label": label_or_richtextlabel_node} # Settings which will be passed as an argument.
@@ -28,9 +28,9 @@ var animation = Captions.create(data) # Returns an Animation which can be used b
 See example below.
 ![Screenshot_89](https://github.com/1Othello/godot-speech-to-subtitles/assets/132980114/ef7b88f5-6220-4425-b976-7c8e03c963ba)
 
-### Data Dictionary (Advanced Usage)
+### Moderate Usage
 
-In order to create your subtitle animation you need to pass over a dictionary for the Captions.create() function to use.
+In order to create your ideal subtitle animation you need to pass over a dictionary for the Captions.create() function to use.
 
 Here are all the keys which the singleton will accept:
 
