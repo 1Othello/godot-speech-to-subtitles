@@ -34,7 +34,7 @@ In order to create your subtitle animation you need to pass over a dictionary fo
 
 Here are all the keys which the singleton will accept:
 
-1. TextPath (String) (REQUIRED)
+1. **TextPath** (String) (REQUIRED)
    - The path to the text file which is in subrip format. (Example: "res://my_long_speech.txt")
 
 You can retrieve a template of the dictionary data needed directly from the singleton itself.
