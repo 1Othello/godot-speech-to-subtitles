@@ -19,7 +19,7 @@ Create a Singleton for this script.
 (This allows you to use it inside of any script.)
 
 
-### Simple Usage
+> Simple Usage
 
 ```
 var data = {"TextPath": "res://path_to_text_file.txt", "Label": label_or_richtextlabel_node} # Settings which will be passed as an argument.
