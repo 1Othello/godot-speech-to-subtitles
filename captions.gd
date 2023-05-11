@@ -71,28 +71,23 @@ func generate_animation_LETTERS(data, caption_fields):
 	var animation = Animation.new()
 	var track_index = animation.add_track(Animation.TYPE_VALUE)
 	var nodePath = NodePath(data["Label"].owner.get_path_to(data["Label"]))
-	var chars = 0
 	var full_script = ""
 	animation.value_track_set_update_mode(track_index, Animation.UPDATE_CONTINUOUS)
 	animation.track_set_path(track_index, nodePath.get_concatenated_names() + ":text")
 	var last_field = caption_fields[caption_fields.size() - 1]
 	caption_fields.remove_at(caption_fields.size() - 1)
-	var written = ""
 	for caption in caption_fields:
 		var text = caption["text"] # The text being displayed.
 		var start = caption["start"] # The starting keyframe in seconds.
 		var end = caption["end"] # The ending keyframe in seconds.
 		animation.track_insert_key(track_index, start, full_script)
 		full_script += text + " "
-		chars += text.length()
 		animation.track_insert_key(track_index, end, full_script)
 	
 	var text = last_field["text"]
-	written += " "
 
 	animation.track_insert_key(track_index, last_field["start"], full_script)
 	full_script += last_field["text"]
-	chars = full_script.length()
 	
 	var duration
 	
