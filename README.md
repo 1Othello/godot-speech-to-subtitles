@@ -36,6 +36,7 @@ Here are all the keys which the singleton will accept:
 
 1. TextPath (String) (REQUIRED)
    - The path to the text file which is in subrip format. (Example: "res://my_long_speech.txt")
+   - This can also be the text file in string format.
  
 2. Label (Label or RichTextLabel) (REQUIRED)
    - A node representing a Label or RichTextLabel. (For displaying the subtitles.)
