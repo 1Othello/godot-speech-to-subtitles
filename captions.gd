@@ -86,7 +86,7 @@ func generate_animation_LETTERS(data, caption_fields):
 		full_script += text + " "
 		chars += text.length()
 		animation.track_insert_key(track_index, end, full_script)
-
+	
 	var text = last_field["text"]
 	written += " "
 
@@ -117,21 +117,35 @@ func generate_animation_LETTERS(data, caption_fields):
 
 func create(data: Dictionary): # Creates and returns a label animation with the captions provided.
 	
-	var raw_file = FileAccess.open(data["TextPath"], FileAccess.READ)
 	var caption_fields = []
 	var messy_values = []
-
-	while not raw_file.eof_reached():
-		var line = raw_file.get_line()
-		if line.find("-->") != -1: # Check if the line is a timestamp.
-			var timestamps = get_timestamp_values(line) # Returns an array containing the start and end of the following line in seconds.
-			messy_values.append(timestamps[0])
-			messy_values.append(timestamps[1])
-		elif messy_values.size() == 2: # If we have 2 stamps then this line must be the transcribed text.
-			var dict = {"text": line, "start": messy_values[0], "end": messy_values[1]} # The dictionary used for creating keyframes.
-			caption_fields.append(dict)
-			messy_values.clear() # Clear the array for the next transcription.
-	raw_file.close()
+	
+	var raw_file
+	
+	if data["TextPath"].begins_with("res://") or data["TextPath"].begins_with("user://") or data["TextPath"].begins_with("C:/"): # File.
+		raw_file = FileAccess.open(data["TextPath"], FileAccess.READ)
+		while not raw_file.eof_reached():
+			var line = raw_file.get_line()
+			if line.find("-->") != -1: # Check if the line is a timestamp.
+				var timestamps = get_timestamp_values(line) # Returns an array containing the start and end of the following line in seconds.
+				messy_values.append(timestamps[0])
+				messy_values.append(timestamps[1])
+			elif messy_values.size() == 2: # If we have 2 stamps then this line must be the transcribed text.
+				var dict = {"text": line, "start": messy_values[0], "end": messy_values[1]} # The dictionary used for creating keyframes.
+				caption_fields.append(dict)
+				messy_values.clear() # Clear the array for the next transcription.
+		raw_file.close()
+	else: # String.
+		var everyLine = data["TextPath"].split("\n")
+		for line in everyLine:
+			if line.find("-->") != -1: # Check if the line is a timestamp.
+				var timestamps = get_timestamp_values(line) # Returns an array containing the start and end of the following line in seconds.
+				messy_values.append(timestamps[0])
+				messy_values.append(timestamps[1])
+			elif messy_values.size() == 2: # If we have 2 stamps then this line must be the transcribed text.
+				var dict = {"text": line, "start": messy_values[0], "end": messy_values[1]} # The dictionary used for creating keyframes.
+				caption_fields.append(dict)
+				messy_values.clear() # Clear the array for the next transcription.
 	
 	if "TimeOnly" in data and data["TimeOnly"]: # Returns caption fields without animating them.
 		return caption_fields
